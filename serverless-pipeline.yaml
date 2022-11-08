@@ -1,0 +1,26 @@
+name: "On Push master"
+triggers:
+  github:
+    secret: test
+    events:
+      - eventName: "push"
+        filter: 'body.ref in ["refs/heads/tes"]'
+    manual_dispatch:
+      secret: test
+job:
+  runtime: nodejs12
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    FIRST_NAME: Mona
+    LAST_NAME: Octocat
+  steps:
+    - name: 'list files'
+      run: |
+        ls -la
+      working-directory: ./
+    - run: |
+        npm install
+      working-directory: ./
+    - run: |
+        npm --version
+      working-directory: ./
