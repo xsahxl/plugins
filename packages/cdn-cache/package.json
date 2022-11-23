@@ -1,7 +1,7 @@
 {
-  "name": "@serverless-cd/core",
-  "version": "0.0.1-alpha.36",
-  "description": "sevrerless-cd核心包",
+  "name": "@serverless-cd/aliyun-cdn-cache",
+  "version": "0.0.1-alpha.4",
+  "description": "aliyun-cdn-cache plugin插件",
   "main": "./lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,12 +11,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    
-  },
-  "devDependencies": {
-    
+    "lodash": "^4.17.21"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.189"
   }
 }
