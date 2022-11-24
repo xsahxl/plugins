@@ -10,12 +10,13 @@
     "format": "prettier --write packages/**/*.ts",
     "format-check": "prettier --check packages/**/*.ts",
     "test": "jest --testTimeout 10000",
-    "test:core": "jest --testTimeout 10000 packages/core --watchAll"
+    "test:cdn-cache": "jest --testTimeout 10000 packages/cdn-cache --watchAll"
   },
   "workspaces": [
     "packages/checkout"
   ],
   "devDependencies": {
+    "@serverless-cd/engine": "^0.0.10",
     "@types/jest": "^28.1.6",
     "dotenv": "^16.0.3",
     "jest": "^28.1.3",
