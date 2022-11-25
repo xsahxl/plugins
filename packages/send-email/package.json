@@ -1,0 +1,27 @@
+{
+  "name": "@serverless-cd/send-email",
+  "version": "0.0.1-alpha.4",
+  "description": "aliyun-cdn-cache plugin插件",
+  "main": "./lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "watch": "tsc -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@serverless-cd/core": "^0.0.3"
+  },
+  "devDependencies": {
+    "@serverless-cd/core": "^0.0.3",
+    "@types/nodemailer": "^6.4.6"
+  },
+  "dependencies": {
+    "art-template": "^4.13.2",
+    "nodemailer": "^6.8.0"
+  }
+}
