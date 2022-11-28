@@ -10,7 +10,7 @@ const webhook = 'https://oapi.dingtalk.com/robot/send?access_token=${{ secrets.a
 const secrets = {
   access_token: process.env.access_token,
 };
-describe('orm', () => {
+describe('ding talk', () => {
   beforeAll(() => {
     try {
       fs.rmdirSync(logPrefix);
