@@ -1,6 +1,4 @@
-import { lodash as _, Logger } from '@serverless-cd/core';
-import fs from 'fs-extra';
-import os from 'os';
+import { lodash as _, Logger, fs } from '@serverless-cd/core';
 import path from 'path';
 import { execSync } from 'child_process';
 import { parse as fileParse } from 'dotenv';
@@ -41,7 +39,7 @@ export default class Publish {
     this.codeDir = _.get(props, 'codeDir', '');
   }
 
-  run(cwd: string = (process.env.DOWNLOAD_CODE_DIR as string)): void {
+  run(cwd: string): void {
     const npmrcUrl = path.join(cwd, this.codeDir, '.npmrc');
     const npmrcString = this.handlerNpmrc(npmrcUrl);
     fs.outputFileSync(npmrcUrl, npmrcString);
@@ -72,10 +70,10 @@ export default class Publish {
     // env: userconfig 
     let npmrcString = '';
     for (const key in npmConfig) {
-      console.log(npmConfig);
+      this.logger.debug(npmConfig);
       npmrcString += `${key}=${npmConfig[key]}\n`;
     }
-  
+
     this.logger.debug(`npmrcString: ${npmrcString}`);
     return npmrcString;
   }

@@ -22,10 +22,10 @@
     "watch": "tsc -w"
   },
   "peerDependencies": {
-    "@serverless-cd/core": "^0.0.3"
+    "@serverless-cd/core": "^0.0.11"
   },
   "devDependencies": {
-    "@serverless-cd/core": "^0.0.3",
+    "@serverless-cd/core": "^0.0.11",
     "dotenv": "^16.0.3"
   },
   "bugs": {
