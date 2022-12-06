@@ -12,13 +12,13 @@ describe('orm', () => {
   beforeAll(() => {
     try {
       removeDir(logPrefix);
-    } catch (err) {}
+    } catch (err) { }
   });
 
   test('token', async () => {
     const steps = [
       {
-        uses: path.join(__dirname, '..', 'src'),
+        plugin: path.join(__dirname, '..', 'src'),
         inputs: {
           registry: '//registry.npmjs.org',
           token: '${{ secrets.npm_token }}',
@@ -29,7 +29,7 @@ describe('orm', () => {
       // { run: 'echo success', if: '${{ steps.test.output.status === "success" }}' },
     ];
     const engine = new Engine({
-      cwd: path.join(__dirname, 'mock', 'packages'),
+      cwd: __dirname,
       steps,
       logConfig: { logPrefix },
       inputs: { secrets: { npm_token: process.env.npm_token } },

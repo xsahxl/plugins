@@ -7,7 +7,7 @@ const { get } = lodash;
 test('run方法是否执行成功', async () => {
   const steps = [
     {
-      uses: path.join(__dirname, '..', 'src'),
+      plugin: path.join(__dirname, '..', 'src'),
       inputs: { name: 'xiaoming', age: 20, a: '${{env.msg}}', b: '${{secrets.msg}}' },
       env: { msg: 'this is a env test' },
       id: 'cdn-cache',
