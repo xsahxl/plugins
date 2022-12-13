@@ -1,5 +1,4 @@
-import { Logger, lodash as _ } from '@serverless-cd/core';
-import template from 'art-template';
+import { Logger, lodash as _, artTemplate } from '@serverless-cd/core';
 import https from 'https';
 import crypto from 'crypto';
 
@@ -38,16 +37,16 @@ export default class DingTalk {
   secret: string | undefined;
 
   static artTemplate(source: string, data: any) {
-    return template.render(source, data);
+    return artTemplate.render(source, data);
   }
 
   constructor(props: IProps, context: Record<string, any> = {}, logger: Logger) {
     this.logger = logger;
-    this.url = _.get(props, 'webhook', ''); 
+    this.url = _.get(props, 'webhook', '');
     if (_.isEmpty(this.url)) {
       throw new Error(`DingTalk webhook is empty`);
     }
-    this.msgtype = _.get(props, 'msgtype', TYPE.TEXT); 
+    this.msgtype = _.get(props, 'msgtype', TYPE.TEXT);
     this.at = _.get(props, 'at');
     this.secret = _.get(props, 'secret');
 
@@ -89,10 +88,10 @@ export default class DingTalk {
     return res;
   }
 
-  private signFn (secret: string, content: string): string { // 加签
+  private signFn(secret: string, content: string): string { // 加签
     const str = crypto.createHmac('sha256', secret).update(content)
-    .digest()
-    .toString('base64');
+      .digest()
+      .toString('base64');
     return encodeURIComponent(str);
   }
 
@@ -102,7 +101,7 @@ export default class DingTalk {
       msgtype: this.msgtype,
     };
 
-    switch(this.msgtype) {
+    switch (this.msgtype) {
       case TYPE.TEXT:
         payload.text = this.payload;
         break;
