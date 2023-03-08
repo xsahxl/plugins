@@ -2,6 +2,7 @@ import Engine from '@serverless-cd/engine';
 import path from 'path';
 import fs from 'fs-extra';
 import { IProvider } from '../src/types';
+import checkout from '../src';
 
 require('dotenv').config({ path: path.join(__dirname, '.env') });
 const logPrefix = path.join(__dirname, 'logs');
@@ -257,7 +258,7 @@ describe('仓库已经初始化', () => {
   });
 });
 
-describe.only('plugin inputs case', () => {
+describe('plugin inputs case', () => {
   beforeAll(() => {
     fs.removeSync(execDir);
   });
@@ -365,5 +366,20 @@ describe.only('plugin inputs case', () => {
     });
     const res = await engine.start();
     expect(res.status).toBe('success');
+  });
+});
+
+describe.only('use npm', () => {
+  test('checkout ref branch case', async () => {
+    await expect(
+      checkout({
+        token: process.env.TOKEN as string,
+        provider: 'gitee' as IProvider,
+        owner: 'shihuali',
+        cloneUrl: 'https://gitee.com/shihuali/checkout.git',
+        execDir: path.join(execDir, 'no-agrs-with-npm'),
+        ref: 'refs/heads/test',
+      }),
+    ).resolves.not.toThrow();
   });
 });
