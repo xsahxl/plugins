@@ -256,3 +256,114 @@ describe('仓库已经初始化', () => {
     expect(res.status).toBe('success');
   });
 });
+
+describe.only('plugin inputs case', () => {
+  beforeAll(() => {
+    fs.removeSync(execDir);
+  });
+  test('checkout ref branch case', async () => {
+    const steps = [
+      {
+        plugin,
+        inputs: {
+          ref: 'refs/heads/test',
+        },
+      },
+    ];
+    const engine = new Engine({
+      cwd: __dirname,
+      steps,
+      logConfig: { logPrefix },
+      inputs: {
+        git: {
+          token: process.env.TOKEN,
+          provider: 'gitee' as IProvider,
+          owner: 'shihuali',
+          cloneUrl: 'https://gitee.com/shihuali/checkout.git',
+          execDir: path.join(execDir, 'ref-with-branch'),
+        },
+      },
+    });
+    const res = await engine.start();
+    expect(res.status).toBe('success');
+  });
+  test('checkout ref branch and commit case', async () => {
+    const steps = [
+      {
+        plugin,
+        inputs: {
+          ref: 'refs/heads/test',
+          commit: '7ba9d158a0875969a51750345ec07616a912c301',
+        },
+      },
+    ];
+    const engine = new Engine({
+      cwd: __dirname,
+      steps,
+      logConfig: { logPrefix },
+      inputs: {
+        git: {
+          token: process.env.TOKEN,
+          provider: 'gitee' as IProvider,
+          owner: 'shihuali',
+          cloneUrl: 'https://gitee.com/shihuali/checkout.git',
+          execDir: path.join(execDir, 'ref-with-branch-and-commit'),
+        },
+      },
+    });
+    const res = await engine.start();
+    expect(res.status).toBe('success');
+  });
+  test('checkout ref tag case', async () => {
+    const steps = [
+      {
+        plugin,
+        inputs: {
+          ref: 'refs/tags/0.0.2',
+        },
+      },
+    ];
+    const engine = new Engine({
+      cwd: __dirname,
+      steps,
+      logConfig: { logPrefix },
+      inputs: {
+        git: {
+          token: process.env.TOKEN,
+          provider: 'gitee' as IProvider,
+          owner: 'shihuali',
+          cloneUrl: 'https://gitee.com/shihuali/checkout.git',
+          execDir: path.join(execDir, 'ref-with-tag'),
+        },
+      },
+    });
+    const res = await engine.start();
+    expect(res.status).toBe('success');
+  });
+  test('checkout commit', async () => {
+    const steps = [
+      {
+        plugin,
+        inputs: {
+          commit: '3b763ea19e8e8a964e90e75962ccb8e0d68bdf46',
+        },
+      },
+    ];
+    const engine = new Engine({
+      cwd: __dirname,
+      steps,
+      logConfig: { logPrefix },
+      inputs: {
+        git: {
+          token: process.env.TOKEN,
+          provider: 'gitee' as IProvider,
+          owner: 'shihuali',
+          cloneUrl: 'https://gitee.com/shihuali/checkout.git',
+          execDir: path.join(execDir, 'commit'),
+        },
+      },
+    });
+    const res = await engine.start();
+    expect(res.status).toBe('success');
+  });
+});
