@@ -1,6 +1,6 @@
 {
   "name": "@serverless-cd/checkout",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Checkout a git repository.",
   "main": "./lib/index.js",
   "scripts": {
@@ -20,5 +20,36 @@
   },
   "dependencies": {
     "simple-git": "^3.17.0"
+  },
+  "inputs": {
+    "ref": {
+      "required": false,
+      "description": "通过分支或者tag来下载仓库，比如：refs/heads/main 或者 refs/tags/v0.0.1"
+    },
+    "commit": {
+      "required": false,
+      "description": " 通过commit id来下载仓库"
+    },
+    "token": {
+      "required": false,
+      "description": "用于下载仓库的个人访问令牌 比如：github的个人访问令牌（https://github.com/settings/tokens）。"
+    },
+    "provider": {
+      "required": false,
+      "description": "支持下载的代码托管平台(github、gitee、gitlab、codeup)"
+    },
+    "cloneUrl": {
+      "required": false,
+      "description": "仓库的克隆地址"
+    },
+    "owner": {
+      "required": false,
+      "description": "仓库owner"
+    },
+    "execDir": {
+      "required": false,
+      "description": "代码下载目录",
+      "default": "临时目录"
+    }
   }
 }

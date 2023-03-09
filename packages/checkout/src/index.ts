@@ -16,7 +16,15 @@ export async function run(
   logger.info('Start checkout plugin');
   logger.info(`inputs: ${JSON.stringify(inputs, null, 2)}`);
   const newInputs = getInputs(inputs, context);
-  const newConfig = assign({}, { ...get(context, 'inputs.git'), logger }, newInputs);
+  const newConfig = assign(
+    {},
+    {
+      ...get(context, 'inputs.ctx.data.checkout'),
+      ...get(context, 'inputs.git'),
+      logger,
+    },
+    newInputs,
+  );
   logger.info(`newInputs: ${JSON.stringify(newConfig, null, 2)}`);
   await new Checkout(newConfig).run();
   logger.info('End checkout plugin');
