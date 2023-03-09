@@ -1,0 +1,24 @@
+{
+  "name": "@serverless-cd/checkout",
+  "version": "0.0.1",
+  "description": "Checkout a git repository.",
+  "main": "./lib/index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@serverless-cd/core": "^0.0.15"
+  },
+  "devDependencies": {
+    "@serverless-cd/core": "^0.0.15"
+  },
+  "dependencies": {
+    "simple-git": "^3.17.0"
+  }
+}
