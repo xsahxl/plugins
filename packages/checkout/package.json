@@ -1,6 +1,6 @@
 {
   "name": "@serverless-cd/checkout",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Checkout a git repository.",
   "main": "./lib/index.js",
   "scripts": {
@@ -13,8 +13,8 @@
     "access": "public"
   },
   "dependencies": {
-    "simple-git": "^3.17.0",
-    "@serverless-cd/core": "^0.0.15"
+    "@serverless-cd/core": "^0.0.15",
+    "simple-git": "^3.17.0"
   },
   "inputs": {
     "ref": {
