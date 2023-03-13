@@ -15,6 +15,7 @@ export async function run(
 ) {
   logger.info('Start checkout plugin');
   logger.info(`inputs: ${JSON.stringify(inputs, null, 2)}`);
+  logger.debug(`context: ${JSON.stringify(context, null, 2)}`);
   const newInputs = getInputs(inputs, context);
   const newConfig = assign(
     {},
