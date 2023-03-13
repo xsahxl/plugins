@@ -12,14 +12,9 @@
   "publishConfig": {
     "access": "public"
   },
-  "peerDependencies": {
-    "@serverless-cd/core": "^0.0.15"
-  },
-  "devDependencies": {
-    "@serverless-cd/core": "^0.0.15"
-  },
   "dependencies": {
-    "simple-git": "^3.17.0"
+    "simple-git": "^3.17.0",
+    "@serverless-cd/core": "^0.0.15"
   },
   "inputs": {
     "ref": {
