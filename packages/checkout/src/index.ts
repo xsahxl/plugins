@@ -2,7 +2,7 @@ import { Logger, getInputs, lodash } from '@serverless-cd/core';
 import Checkout from './checkout';
 import { IConfig } from './types';
 
-const { assign, get } = lodash;
+const { assign, get, cloneDeep } = lodash;
 
 export default async function checkout(config: IConfig) {
   await new Checkout(config).run();
@@ -26,7 +26,7 @@ export async function run(
     },
     newInputs,
   );
-  logger.info(`newInputs: ${JSON.stringify(newConfig, null, 2)}`);
+  logger.info(`newInputs: ${JSON.stringify(cloneDeep(newConfig), null, 2)}`);
   await new Checkout(newConfig).run();
   logger.info('End checkout plugin');
 }
