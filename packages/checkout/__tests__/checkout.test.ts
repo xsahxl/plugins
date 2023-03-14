@@ -369,7 +369,7 @@ describe('plugin inputs case', () => {
   });
 });
 
-describe.only('use npm', () => {
+describe('use npm', () => {
   test('checkout ref branch case', async () => {
     await expect(
       checkout({
@@ -382,4 +382,35 @@ describe.only('use npm', () => {
       }),
     ).resolves.not.toThrow();
   });
+});
+
+test.only('checkout for appcenter', async () => {
+  const steps = [
+    {
+      plugin,
+    },
+  ];
+  const engine = new Engine({
+    cwd: path.join(execDir, 'app-center'),
+    steps,
+    logConfig: { logPrefix },
+    inputs: {
+      ctx: {
+        data: {
+          checkout: {
+            branch: 'master',
+            commit: '57f0153d92cfd1b445235a7763b2a799df1f42b2',
+            message: 'Initialize by template start-springboot',
+            provider: 'github',
+            ref: '+57f0153d92cfd1b445235a7763b2a799df1f42b2:refs/remotes/origin/master',
+            remote: `https://${process.env.APPCENTER_TOKEN}@github.com/zhaohang88/start-springboot-kzbp.git`,
+            token: process.env.APPCENTER_TOKEN,
+            userName: 'zhaohang88',
+          },
+        },
+      },
+    },
+  });
+  const res = await engine.start();
+  expect(res.status).toBe('success');
 });
