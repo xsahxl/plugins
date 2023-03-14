@@ -1,6 +1,6 @@
-import { Logger, fs } from '@serverless-cd/core';
+import { Logger, fs, lodash } from '@serverless-cd/core';
 import simpleGit from 'simple-git';
-
+const { get } = lodash;
 interface IConfig {
   provider: string;
   token: string;
@@ -33,6 +33,8 @@ const checkoutForAppCenter = async (config: IConfig) => {
     logger.info(`Git reset --hard FETCH_HEAD`);
     await git.reset(['--hard', 'FETCH_HEAD']);
   }
+  const res = await git.log(['--no-color', '-n', '1', "--format='HEAD is now at %h %s'"]);
+  logger.info(get(res, 'latest.hash'));
 };
 
 export default checkoutForAppCenter;

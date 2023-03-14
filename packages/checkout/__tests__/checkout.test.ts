@@ -385,6 +385,7 @@ describe('use npm', () => {
 });
 
 test.only('checkout for appcenter', async () => {
+  fs.removeSync(execDir);
   const steps = [
     {
       plugin,
