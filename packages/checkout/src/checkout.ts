@@ -4,6 +4,8 @@ import * as path from 'path';
 import * as os from 'os';
 import { IConfig } from './types';
 const { replace, get } = lodash;
+const debug = require('debug')('serverless-cd:checkout');
+
 class Checkout {
   private logger: Logger;
   private git: SimpleGit;
@@ -12,6 +14,7 @@ class Checkout {
     this.logger = (config.logger || console) as Logger;
     const execDir = config.execDir || os.tmpdir();
     this.config.execDir = path.isAbsolute(execDir) ? execDir : path.join(process.cwd(), execDir);
+    debug(`config: ${JSON.stringify(this.config, null, 2)}`);
     this.logger.info(`execDir: ${this.config.execDir}`);
     fs.ensureDirSync(this.config.execDir);
     this.git = simpleGit(this.config.execDir);
