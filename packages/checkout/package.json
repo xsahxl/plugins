@@ -1,6 +1,6 @@
 {
   "name": "@serverless-cd/checkout",
-  "version": "0.0.2",
+  "version": "0.0.6",
   "description": "Checkout a git repository.",
   "main": "./lib/index.js",
   "scripts": {
@@ -12,13 +12,9 @@
   "publishConfig": {
     "access": "public"
   },
-  "peerDependencies": {
-    "@serverless-cd/core": "^0.0.15"
-  },
-  "devDependencies": {
-    "@serverless-cd/core": "^0.0.15"
-  },
   "dependencies": {
+    "@serverless-cd/core": "^0.0.15",
+    "flatted": "^3.2.7",
     "simple-git": "^3.17.0"
   },
   "inputs": {
@@ -51,5 +47,6 @@
       "description": "代码下载目录",
       "default": "临时目录"
     }
-  }
+  },
+  "gitHead": "452160303c906010dc155a783e8571df965001bd"
 }

@@ -1,10 +1,9 @@
-import { Logger, parseRef } from '@serverless-cd/core';
+import { Logger, parseRef, fs, lodash } from '@serverless-cd/core';
 import simpleGit, { SimpleGit } from 'simple-git';
 import * as path from 'path';
 import * as os from 'os';
-import * as fs from 'fs-extra';
-import { replace, get, isEmpty } from 'lodash';
 import { IConfig } from './types';
+const { replace, get } = lodash;
 class Checkout {
   private logger: Logger;
   private git: SimpleGit;
