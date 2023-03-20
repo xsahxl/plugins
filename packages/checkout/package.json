@@ -1,5 +1,5 @@
 {
-  "name": "@xsahxl/checkout",
+  "name": "@serverless-cd/checkout",
   "version": "0.0.5",
   "description": "Checkout a git repository.",
   "main": "./lib/index.js",
