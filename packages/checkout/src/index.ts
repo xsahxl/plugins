@@ -1,5 +1,5 @@
 import { Logger, getInputs, lodash } from '@serverless-cd/core';
-import { stringify } from 'flatted';
+import { stringify } from './utils';
 import Checkout from './checkout';
 import { IConfig } from './types';
 import checkoutForAppCenter from './checkout-for-appcenter';
@@ -17,12 +17,12 @@ export async function run(
   logger: Logger,
 ) {
   logger.info('Start checkout plugin');
-  debug(`inputs: ${JSON.stringify(inputs, null, 2)}`);
+  debug(`inputs: ${stringify(inputs)}`);
   const newInputs = getInputs(inputs, context);
-  debug(`getInputs: ${JSON.stringify(newInputs, null, 2)}`);
+  debug(`getInputs: ${stringify(newInputs)}`);
 
   const ctx = get(context, 'inputs.ctx.data.checkout');
-  debug(`ctx.data.checkout: ${JSON.stringify(ctx, null, 2)}`);
+  debug(`ctx.data.checkout: ${stringify(ctx)}`);
   const newConfig = assign(
     {},
     {
@@ -32,7 +32,7 @@ export async function run(
     },
     newInputs,
   );
-  debug(`newInputs: ${JSON.stringify(stringify(newConfig), null, 2)}`);
+  debug(`newInputs: ${stringify(newConfig)}`);
   debug(ctx ? 'appcenter checkout' : 'engine checkout');
 
   ctx

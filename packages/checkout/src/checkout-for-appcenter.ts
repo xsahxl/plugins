@@ -1,5 +1,6 @@
 import { Logger, fs, lodash } from '@serverless-cd/core';
 import simpleGit from 'simple-git';
+import { stringify } from './utils';
 const { get } = lodash;
 const debug = require('@serverless-cd/debug')('serverless-cd:checkout');
 
@@ -17,7 +18,7 @@ interface IConfig {
 const checkoutForAppCenter = async (config: IConfig) => {
   const logger = config.logger || console;
   const { execDir, remote, token, branch, commit, provider, ref } = config;
-  debug(`config: ${JSON.stringify(config, null, 2)}`);
+  debug(`config: ${stringify(config)}`);
   fs.ensureDirSync(execDir);
   const git = simpleGit(execDir);
   logger.info(`Git Init ${execDir}`);

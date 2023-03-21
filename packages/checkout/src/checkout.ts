@@ -3,6 +3,7 @@ import simpleGit, { SimpleGit } from 'simple-git';
 import * as path from 'path';
 import * as os from 'os';
 import { IConfig } from './types';
+import { stringify } from './utils';
 const { replace, get } = lodash;
 const debug = require('@serverless-cd/debug')('serverless-cd:checkout');
 
@@ -14,7 +15,7 @@ class Checkout {
     this.logger = (config.logger || console) as Logger;
     const execDir = config.execDir || os.tmpdir();
     this.config.execDir = path.isAbsolute(execDir) ? execDir : path.join(process.cwd(), execDir);
-    debug(`config: ${JSON.stringify(this.config, null, 2)}`);
+    debug(`config: ${stringify(config)}`);
     this.logger.info(`execDir: ${this.config.execDir}`);
     fs.ensureDirSync(this.config.execDir);
     this.git = simpleGit(this.config.execDir);
@@ -53,7 +54,7 @@ class Checkout {
     this.logger.info(`Cloning ${cloneUrl} into ${execDir}`);
     const newCloneUrl = this.getCloneUrl() as string;
     const inputs = this.checkInputs();
-    this.logger.info(`Clone params: ${JSON.stringify(inputs)}`);
+    this.logger.info(`Clone params: ${stringify(inputs)}`);
     if (inputs.noArgs) {
       await this.git.clone(newCloneUrl, execDir as string, ['--depth', '1']);
     } else {
