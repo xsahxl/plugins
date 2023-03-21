@@ -1,7 +1,7 @@
 import { Logger, fs, lodash } from '@serverless-cd/core';
 import simpleGit from 'simple-git';
 const { get } = lodash;
-const debug = require('debug')('serverless-cd:checkout');
+const debug = require('@serverless-cd/debug')('serverless-cd:checkout');
 
 interface IConfig {
   provider: string;

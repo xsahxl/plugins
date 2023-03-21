@@ -4,7 +4,7 @@ import * as path from 'path';
 import * as os from 'os';
 import { IConfig } from './types';
 const { replace, get } = lodash;
-const debug = require('debug')('serverless-cd:checkout');
+const debug = require('@serverless-cd/debug')('serverless-cd:checkout');
 
 class Checkout {
   private logger: Logger;

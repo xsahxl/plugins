@@ -3,7 +3,7 @@ import { stringify } from 'flatted';
 import Checkout from './checkout';
 import { IConfig } from './types';
 import checkoutForAppCenter from './checkout-for-appcenter';
-const debug = require('debug')('serverless-cd:checkout');
+const debug = require('@serverless-cd/debug')('serverless-cd:checkout');
 
 const { assign, get } = lodash;
 

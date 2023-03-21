@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@serverless-cd/core": "^0.0.15",
-    "debug": "^4.3.4",
+    "@serverless-cd/debug": "^4.3.4",
     "flatted": "^3.2.7",
     "simple-git": "^3.17.0"
   },
