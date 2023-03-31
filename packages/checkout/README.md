@@ -18,13 +18,13 @@
     provider: ""
 
     # 仓库的克隆地址，比如：https://gitee.com/shihuali/checkout.git
-    cloneUrl: ""
+    clone_url: ""
 
-    # 仓库owner，比如cloneUrl为https://gitee.com/shihuali/checkout.git时，owner应为 shihuali
+    # 仓库owner，比如clone_url为https://gitee.com/shihuali/checkout.git时，owner应为 shihuali
     owner: ""
 
     # 代码下载目录
-    execDir: ""
+    exec_dir: ""
 
 ```
 
@@ -34,10 +34,10 @@
 | -------- | -------------------------------------------------------------------------------------------- | ---------------------------------- | ---- | -------- |
 | ref      | 通过分支或者 tag 来下载仓库，比如：refs/heads/main 或者 refs/tags/v0.0.1                     | string                             | 否   |          |
 | commit   | 通过 commit id 来下载仓库                                                                    | string                             | 否   |          |
-| execDir  | 代码下载目录                                                                                 | string                             | 否   | 临时目录 |
+| exec_dir  | 代码下载目录                                                                                 | string                             | 否   | 临时目录 |
 | token    | 用于下载仓库的个人访问令牌 比如：[github 的个人访问令牌](https://github.com/settings/tokens) | string                             | 否   |          |
 | provider | 支持下载的代码托管平台                                                                       | enum：github、gitee、gitlab、codeup | 否   |          |
-| cloneUrl | 仓库的克隆地址                                                                               | string                             | 否   |          |
+| clone_url | 仓库的克隆地址                                                                               | string                             | 否   |          |
 | owner    | 仓库 owner                                                                                   | string                             | 否   |          |
 
 ## 注意 Engine 调用方式
@@ -54,8 +54,8 @@ const engine = new Engine({
       token: "xxx",  // 必填
       provider: "gitee", // 必填
       owner: "shihuali", // 必填
-      cloneUrl: "https://gitee.com/shihuali/checkout.git", // 必填
-      execDir: "./checkout", // 选填
+      clone_url: "https://gitee.com/shihuali/checkout.git", // 必填
+      exec_dir: "./checkout", // 选填
       ref: "refs/heads/main", // 选填
       commit: 'xx' // 选填
     },
