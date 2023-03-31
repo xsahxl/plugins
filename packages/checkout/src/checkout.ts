@@ -13,28 +13,28 @@ class Checkout {
   private existing: boolean = false;
   constructor(private config: IConfig) {
     this.logger = (config.logger || console) as Logger;
-    const execDir = config.execDir || os.tmpdir();
-    this.config.execDir = path.isAbsolute(execDir) ? execDir : path.join(process.cwd(), execDir);
+    const exec_dir = config.exec_dir || os.tmpdir();
+    this.config.exec_dir = path.isAbsolute(exec_dir) ? exec_dir : path.join(process.cwd(), exec_dir);
     debug(`config: ${stringify(config)}`);
-    this.logger.info(`execDir: ${this.config.execDir}`);
-    fs.ensureDirSync(this.config.execDir);
-    this.git = simpleGit(this.config.execDir);
+    this.logger.info(`exec_dir: ${this.config.exec_dir}`);
+    fs.ensureDirSync(this.config.exec_dir);
+    this.git = simpleGit(this.config.exec_dir);
   }
   async run() {
-    const { cloneUrl, execDir } = this.config;
-    this.existing = fs.existsSync(path.join(execDir as string, '.git'));
+    const { clone_url, exec_dir } = this.config;
+    this.existing = fs.existsSync(path.join(exec_dir as string, '.git'));
     this.logger.info(`Existing: ${this.existing}`);
     if (this.existing) {
-      this.logger.info(`Updating ${cloneUrl} into ${execDir}`);
-      await this.git.remote(['set-url', 'origin', this.getCloneUrl() as string]);
+      this.logger.info(`Updating ${clone_url} into ${exec_dir}`);
+      await this.git.remote(['set-url', 'origin', this.getclone_url() as string]);
       await this.checkout();
     } else {
       await this.clone();
     }
   }
-  private getCloneUrl() {
-    const { provider, owner, cloneUrl, token } = this.config;
-    const newUrl = replace(cloneUrl, /http(s)?:\/\//, '');
+  private getclone_url() {
+    const { provider, owner, clone_url, token } = this.config;
+    const newUrl = replace(clone_url, /http(s)?:\/\//, '');
     if (provider === 'gitee') {
       return `https://${owner}:${token}@${newUrl}`;
     }
@@ -42,7 +42,7 @@ class Checkout {
       return `https://${token}@${newUrl}`;
     }
     if (provider === 'gitlab') {
-      const protocol = cloneUrl.startsWith('https') ? 'https' : 'http';
+      const protocol = clone_url.startsWith('https') ? 'https' : 'http';
       return `${protocol}${owner}:${token}@${newUrl}`;
     }
     if (provider === 'codeup') {
@@ -50,15 +50,15 @@ class Checkout {
     }
   }
   private async clone() {
-    const { cloneUrl, execDir } = this.config;
-    this.logger.info(`Cloning ${cloneUrl} into ${execDir}`);
-    const newCloneUrl = this.getCloneUrl() as string;
+    const { clone_url, exec_dir } = this.config;
+    this.logger.info(`Cloning ${clone_url} into ${exec_dir}`);
+    const newclone_url = this.getclone_url() as string;
     const inputs = this.checkInputs();
     this.logger.info(`Clone params: ${stringify(inputs)}`);
     if (inputs.noArgs) {
-      await this.git.clone(newCloneUrl, execDir as string, ['--depth', '1']);
+      await this.git.clone(newclone_url, exec_dir as string, ['--depth', '1']);
     } else {
-      await this.git.clone(newCloneUrl, execDir as string, ['--no-checkout']);
+      await this.git.clone(newclone_url, exec_dir as string, ['--no-checkout']);
       await this.checkout();
     }
     this.logger.info('Cloned successfully');

@@ -6,9 +6,9 @@ export interface IConfig {
   token: string;
   provider: IProvider;
   owner: string;
-  cloneUrl: string;
+  clone_url: string;
   logger?: Logger;
-  execDir?: string;
+  exec_dir?: string;
   ref?: string;
   commit?: string;
 }
