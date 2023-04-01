@@ -7,11 +7,11 @@ import checkout from '../src';
 require('dotenv').config({ path: path.join(__dirname, '.env') });
 const logPrefix = path.join(__dirname, 'logs');
 const plugin = path.join(__dirname, '..', 'src');
-const execDir = path.join(__dirname, '_temp');
+const exec_dir = path.join(__dirname, '_temp');
 
 describe('仓库未初始化', () => {
   beforeAll(() => {
-    fs.removeSync(execDir);
+    fs.removeSync(exec_dir);
   });
   test('checkout no ref and commit', async () => {
     const steps = [
@@ -28,8 +28,8 @@ describe('仓库未初始化', () => {
           token: process.env.TOKEN,
           provider: 'gitee' as IProvider,
           owner: 'shihuali',
-          cloneUrl: 'https://gitee.com/shihuali/checkout.git',
-          execDir: path.join(execDir, 'no-agrs'),
+          clone_url: 'https://gitee.com/shihuali/checkout.git',
+          exec_dir: path.join(exec_dir, 'no-agrs'),
         },
       },
     });
@@ -51,8 +51,8 @@ describe('仓库未初始化', () => {
           token: process.env.TOKEN,
           provider: 'gitee' as IProvider,
           owner: 'shihuali',
-          cloneUrl: 'https://gitee.com/shihuali/checkout.git',
-          execDir: path.join(execDir, 'ref-with-branch'),
+          clone_url: 'https://gitee.com/shihuali/checkout.git',
+          exec_dir: path.join(exec_dir, 'ref-with-branch'),
           ref: 'refs/heads/test',
         },
       },
@@ -75,8 +75,8 @@ describe('仓库未初始化', () => {
           token: process.env.TOKEN,
           provider: 'gitee' as IProvider,
           owner: 'shihuali',
-          cloneUrl: 'https://gitee.com/shihuali/checkout.git',
-          execDir: path.join(execDir, 'ref-with-branch-and-commit'),
+          clone_url: 'https://gitee.com/shihuali/checkout.git',
+          exec_dir: path.join(exec_dir, 'ref-with-branch-and-commit'),
           ref: 'refs/heads/test',
           commit: '7ba9d158a0875969a51750345ec07616a912c301',
         },
@@ -100,8 +100,8 @@ describe('仓库未初始化', () => {
           token: process.env.TOKEN,
           provider: 'gitee' as IProvider,
           owner: 'shihuali',
-          cloneUrl: 'https://gitee.com/shihuali/checkout.git',
-          execDir: path.join(execDir, 'ref-with-tag'),
+          clone_url: 'https://gitee.com/shihuali/checkout.git',
+          exec_dir: path.join(exec_dir, 'ref-with-tag'),
           ref: 'refs/tags/0.0.2',
         },
       },
@@ -124,8 +124,8 @@ describe('仓库未初始化', () => {
           token: process.env.TOKEN,
           provider: 'gitee' as IProvider,
           owner: 'shihuali',
-          cloneUrl: 'https://gitee.com/shihuali/checkout.git',
-          execDir: path.join(execDir, 'commit'),
+          clone_url: 'https://gitee.com/shihuali/checkout.git',
+          exec_dir: path.join(exec_dir, 'commit'),
           commit: '3b763ea19e8e8a964e90e75962ccb8e0d68bdf46',
         },
       },
@@ -151,8 +151,8 @@ describe('仓库已经初始化', () => {
           token: process.env.TOKEN,
           provider: 'gitee' as IProvider,
           owner: 'shihuali',
-          cloneUrl: 'https://gitee.com/shihuali/checkout.git',
-          execDir: path.join(execDir, 'no-agrs'),
+          clone_url: 'https://gitee.com/shihuali/checkout.git',
+          exec_dir: path.join(exec_dir, 'no-agrs'),
         },
       },
     });
@@ -174,8 +174,8 @@ describe('仓库已经初始化', () => {
           token: process.env.TOKEN,
           provider: 'gitee' as IProvider,
           owner: 'shihuali',
-          cloneUrl: 'https://gitee.com/shihuali/checkout.git',
-          execDir: path.join(execDir, 'ref-with-branch'),
+          clone_url: 'https://gitee.com/shihuali/checkout.git',
+          exec_dir: path.join(exec_dir, 'ref-with-branch'),
           ref: 'refs/heads/test',
         },
       },
@@ -198,8 +198,8 @@ describe('仓库已经初始化', () => {
           token: process.env.TOKEN,
           provider: 'gitee' as IProvider,
           owner: 'shihuali',
-          cloneUrl: 'https://gitee.com/shihuali/checkout.git',
-          execDir: path.join(execDir, 'ref-with-branch-and-commit'),
+          clone_url: 'https://gitee.com/shihuali/checkout.git',
+          exec_dir: path.join(exec_dir, 'ref-with-branch-and-commit'),
           ref: 'refs/heads/test',
           commit: '7ba9d158a0875969a51750345ec07616a912c301',
         },
@@ -223,8 +223,8 @@ describe('仓库已经初始化', () => {
           token: process.env.TOKEN,
           provider: 'gitee' as IProvider,
           owner: 'shihuali',
-          cloneUrl: 'https://gitee.com/shihuali/checkout.git',
-          execDir: path.join(execDir, 'ref-with-tag'),
+          clone_url: 'https://gitee.com/shihuali/checkout.git',
+          exec_dir: path.join(exec_dir, 'ref-with-tag'),
           ref: 'refs/tags/0.0.2',
         },
       },
@@ -247,8 +247,8 @@ describe('仓库已经初始化', () => {
           token: process.env.TOKEN,
           provider: 'gitee' as IProvider,
           owner: 'shihuali',
-          cloneUrl: 'https://gitee.com/shihuali/checkout.git',
-          execDir: path.join(execDir, 'commit'),
+          clone_url: 'https://gitee.com/shihuali/checkout.git',
+          exec_dir: path.join(exec_dir, 'commit'),
           commit: '3b763ea19e8e8a964e90e75962ccb8e0d68bdf46',
         },
       },
@@ -260,7 +260,7 @@ describe('仓库已经初始化', () => {
 
 describe('plugin inputs case', () => {
   beforeAll(() => {
-    fs.removeSync(execDir);
+    fs.removeSync(exec_dir);
   });
   test('checkout ref branch case', async () => {
     const steps = [
@@ -280,8 +280,8 @@ describe('plugin inputs case', () => {
           token: process.env.TOKEN,
           provider: 'gitee' as IProvider,
           owner: 'shihuali',
-          cloneUrl: 'https://gitee.com/shihuali/checkout.git',
-          execDir: path.join(execDir, 'ref-with-branch'),
+          clone_url: 'https://gitee.com/shihuali/checkout.git',
+          exec_dir: path.join(exec_dir, 'ref-with-branch'),
         },
       },
     });
@@ -307,8 +307,8 @@ describe('plugin inputs case', () => {
           token: process.env.TOKEN,
           provider: 'gitee' as IProvider,
           owner: 'shihuali',
-          cloneUrl: 'https://gitee.com/shihuali/checkout.git',
-          execDir: path.join(execDir, 'ref-with-branch-and-commit'),
+          clone_url: 'https://gitee.com/shihuali/checkout.git',
+          exec_dir: path.join(exec_dir, 'ref-with-branch-and-commit'),
         },
       },
     });
@@ -333,8 +333,8 @@ describe('plugin inputs case', () => {
           token: process.env.TOKEN,
           provider: 'gitee' as IProvider,
           owner: 'shihuali',
-          cloneUrl: 'https://gitee.com/shihuali/checkout.git',
-          execDir: path.join(execDir, 'ref-with-tag'),
+          clone_url: 'https://gitee.com/shihuali/checkout.git',
+          exec_dir: path.join(exec_dir, 'ref-with-tag'),
         },
       },
     });
@@ -359,8 +359,8 @@ describe('plugin inputs case', () => {
           token: process.env.TOKEN,
           provider: 'gitee' as IProvider,
           owner: 'shihuali',
-          cloneUrl: 'https://gitee.com/shihuali/checkout.git',
-          execDir: path.join(execDir, 'commit'),
+          clone_url: 'https://gitee.com/shihuali/checkout.git',
+          exec_dir: path.join(exec_dir, 'commit'),
         },
       },
     });
@@ -376,23 +376,23 @@ describe('use npm', () => {
         token: process.env.TOKEN as string,
         provider: 'gitee' as IProvider,
         owner: 'shihuali',
-        cloneUrl: 'https://gitee.com/shihuali/checkout.git',
-        execDir: path.join(execDir, 'no-agrs-with-npm'),
+        clone_url: 'https://gitee.com/shihuali/checkout.git',
+        exec_dir: path.join(exec_dir, 'no-agrs-with-npm'),
         ref: 'refs/heads/test',
       }),
     ).resolves.not.toThrow();
   });
 });
 
-test.only('checkout for appcenter', async () => {
-  fs.removeSync(execDir);
+test('checkout for appcenter', async () => {
+  fs.removeSync(exec_dir);
   const steps = [
     {
       plugin,
     },
   ];
   const engine = new Engine({
-    cwd: path.join(execDir, 'app-center'),
+    cwd: path.join(exec_dir, 'app-center'),
     steps,
     logConfig: { logPrefix },
     inputs: {
